@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container-signup" style="height: 80%;">
+    <div class="image-section">
+      <img src="signup.gif" alt="Signup Image">
+    </div>
+    <form class="form-box" action="upload-id.html">
+      <h2 style="margin-left: -15%;">Sign Up</h2>
+      <div class="inside-form">
+        <div>
+          <div class="section">
+            <div class="input-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section">
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="input-group role-group">
+  <label>Role</label>
+  <div class="choose-role">
+    <input type="radio" id="supplier" name="role" value="supplier" required>
+    <label for="supplier">Supplier</label>
+
+    <input type="radio" id="buyer" name="role" value="buyer" required>
+    <label for="buyer">Buyer</label>
+
+    <input type="radio" id="dropshipper" name="role" value="dropshipper" required>
+    <label for="dropshipper">Dropshipper</label>
+  </div>
+</div>
+
+          </div>
+        </div>
+      </div>
+      <button type="submit">Next</button>
+      <p class="link-text">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>

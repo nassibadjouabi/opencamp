@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+ 
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-product {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8rem;
+         }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #66B2FF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .chat-widget:hover {
+    transform: scale(1.1);
+  }
+  
+  .chat-box {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 250px;
+    padding: 15px;
+    background-color: #2D3345;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.8);
+    transform-origin: bottom right;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+  }
+  
+  .chat-widget:hover .chat-box {
+    opacity: 1;
+    transform: scale(1);
+    display: block;
+  }
+  
+  .chat-message {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .author {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            margin-top:40px;
+            margin-left:20px;
+        }
+
+        .air-transport {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+ 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: rgb(0, 0, 0);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 500px;
+            height:600px;
+            text-align: center;
+        }
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 1.5rem;
+        }
+
+        .close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Title */
+h3 {
+    margin-bottom: 20px;
+}
+
+/* Radio Button Labels */
+label {
+    display: block;
+    margin: 10px 0; /* Spacing between labels */
+    font-size: 16px;
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+        .submit-button {
+    background-color: #007BFF; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 20px; /* Espacement intérieur */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur pointer pour indiquer qu'il est cliquable */
+    transition: background-color 0.3s, transform 0.2s; /* Effets de transition */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+    transform: translateY(-2px); /* Léger soulèvement au survol */
+}
+
+.submit-button:active {
+    transform: translateY(0); /* Réinitialisation au clic */
+}
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 1.5rem;
+        }
+
+        .submit-button {
+            margin-top: 1rem;
+        }
+
+    </style>
+</head>
+
+<header class="header" style="display: flex;align-items: center; justify-content: center; align-content: center;">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="AHLAM.png" alt="Logo" class="logo-image">
+        <span class="logo-text">ASSIT</span>
+      </div>
+
+      <div class="search-container">
+        <div class="search-bar-wrapper">
+          
+          <select class="search-option" aria-label="Search Options">
+            <option value="suppliers">Suppliers</option>
+            <option value="products">Products</option>
+          </select>
+          <input type="text" class="search-bar" placeholder="Search..." aria-label="Search" />
+          <button class="search-icon" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="7" stroke="#666" stroke-width="2"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <ul class="menu">
+        <li class="dropdown">
+          <a href="#" class="dropdown-btn">All Categories</a>
+          <ul class="dropdown-menu">
+            <li>Automobiles & Motorcycles</li>
+            <li>Chemicals</li>
+            <li>Electrical Equipment & Supplies</li>
+            <li>Electronic Components & Supplies</li>
+            <li>Furniture</li>
+            <li>Clothing & Accessories</li>
+            <li>Home Appliances</li>
+            <li>Sports & Outdoors</li>
+            <li>Health & Beauty</li>
+            <li>Office Supplies</li>
+            <li>Tools & Hardware</li>
+            <li>Groceries</li>
+            <li>Pets Supplies</li>
+          </ul>
+        </li>
+      </ul>
+
+
+      <div class="buttons">
+        <a href="login.html" class="btn login">Login</a>
+        <a href="Signup.htm" class="btn get-started">
+          <span class="icon">🚀</span> Get Started</a>
+      </div>
+    </nav>
+  </header>
+<body style="background-color: #10141D;">
+    <div class="container">
+        <h1 class="section-title" style="color: white;">Artisan Marketplace: Traditional Crafts and Cuisine        </h1>
+        <div class="featured-product">
+            <div style="display: flex; flex-direction: row; gap:50px">
+                <div style="width:30%"><img src="artisanat.jpg" alt="Featured Armchair" class="product-image"></div>
+                <div style="width:30%"><img src="Ceramique-dart.png" alt="Featured Armchair" class="product-image"></div>
+                <div style="width:30%"><img src="femmes-artisanat-algerie.jpg" alt="Featured Armchair" class="product-image"></div>
+            </div>
+            <h2 class="product-title">Pottery Masters</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span style="color: #666"> (4.5/5)</span>
+            </div>
+            <p class="author">By Kheira laali</p>
+            <p class="description">Discover the intricate designs and techniques used by our pottery masters. Each piece is a reflection of cultural heritage, crafted with passion and precision</p>
+            <p class="price">$79.99</p>
+            <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+        </div>
+<!-- Modal for Air Transport Options -->
+<div class="modal" id="transportModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Select Your Air Transport Option</h3>
+        <label><input type="radio" name="transport" value="air_freight"> Air Freight</label><br>
+        <label><input type="radio" name="transport" value="kost_fret"> Kost Fret</label><br>
+        <label><input type="radio" name="transport" value="express_service"> Express Service</label><br>
+        <label><input type="radio" name="transport" value="standard_service"> Standard Service</label><br>
+        <label><input type="radio" name="transport" value="cargo_service"> Cargo Service</label><br>
+        <label><input type="radio" name="transport" value="door_to_door"> Door-to-Door Service</label><br>
+        <label><input type="radio" name="transport" value="charter_service"> Charter Service</label><br>
+        <button class="submit-button" onclick="submitTransport()">Submit</button>
+    </div>
+</div>
+
+        <div class="chat-widget">
+            <div class="chat-icon">
+              💬 
+            </div>
+            <div class="chat-box">
+              <div class="chat-message user">
+                Hello! How can I help you?
+              </div>
+              <div class="chat-message response">
+                Hi! I'd like to know more about your services.
+              </div>
+            </div>
+          </div>
+
+        <h2 class="section-title" style="color: white;">Similar Products</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="marche-permanent-artisanat.webp" alt="Product 1" class="product-image">
+                <h3 class="product-title">Traditional Weavers </h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span style="color: #666"> (4.0/5)</span>
+                </div>
+                <p class="author">By Aicha Belkacemi</p>
+                <p class="description">Experience the artistry of traditional weavers who create beautiful textiles that tell stories of their origins. From vibrant colors to intricate patterns, each fabric is unique.</p>
+                <p class="price">$29.99</p>
+                <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="marche-permanent-artisanat.webp" alt="Product 2" class="product-image">
+                <h3 class="product-title">Culinary Artisans</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span style="color: #666"> (5.0/5)</span>
+                </div>
+                <p class="author">By Mokrane Said</p>
+                <p class="description">Savor the flavors of traditional cuisine crafted by skilled chefs. Our culinary artisans use time-honored recipes and fresh local ingredients to create dishes that celebrate heritage.
+                </p>
+                <p class="price">$49.99</p>
+                <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="Habit-traditionn01.jpg" alt="Product 3" class="product-image">
+                <h3 class="product-title">Woodworkers</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span style="color: #666"> (4.2/5)</span>
+                </div>
+                <p class="author">By Mohend Hadj Laarbi</p>
+                <p class="description">Delve into the world of woodworking, where skilled artisans transform raw timber into exquisite furniture and decorative pieces. Experience the natural beauty of handcrafted woodwork.</p>
+                <p class="price">$19.99</p>
+                <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById('transportModal').style.display = 'flex';
+        }
+    
+        function closeModal() {
+            document.getElementById('transportModal').style.display = 'none';
+        }
+    
+        function submitTransport() {
+            const selectedOption = document.querySelector('input[name="transport"]:checked');
+            if (selectedOption) {
+                alert(`You have selected: ${selectedOption.value}`);
+                closeModal();
+                // Show confirmation message
+                alert('We have sent you a payment email.');
+            } else {
+                alert('Please select an option.');
+            }
+        }
+    
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('transportModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

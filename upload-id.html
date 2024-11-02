@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload ID</title>
+  <link rel="stylesheet" href="login.css">
+  <style>
+    .upload-area {
+      background-color: #f0f8ff; /* Light blue background for the upload area */
+      border: 2px dashed #007aff; /* Dashed border for the upload area */
+      border-radius: 8px; /* Rounded corners */
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .upload-area:hover {
+      background-color: #e6f7ff; /* Change color on hover */
+    }
+
+    .upload-area input[type="file"] {
+      display: none; /* Hide the default file input */
+    }
+
+    .upload-area label {
+      cursor: pointer; /* Pointer cursor for the label */
+      color: #007aff; /* Label text color */
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .upload-area p {
+      color: #555;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-signup">
+    <div class="image-section">
+      <img src="id.gif" alt="Upload ID Image">
+    </div>
+    <form class="form-box" action="home.html">
+      <h2>Upload ID Picture</h2>
+      <div class="upload-area">
+        <label for="id-picture">Click to Upload a Picture with Your ID</label>
+        <input type="file" id="id-picture" name="id-picture" accept="image/*" required>
+        <p>Supported formats: JPG, PNG, GIF</p>
+      </div>
+      <button type="submit">Submit</button>
+      <div class="link-text">
+        <p>Already uploaded? <a href="home.html">Go to Home</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

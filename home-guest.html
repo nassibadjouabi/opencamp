@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" style="display: flex;align-items: center; justify-content: center; align-content: center;">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="AHLAM.png" alt="Logo" class="logo-image">
+        <span class="logo-text">ASSIT</span>
+      </div>
+
+      <div class="search-container">
+        <div class="search-bar-wrapper">
+          
+          <select class="search-option" aria-label="Search Options">
+            <option value="suppliers">Suppliers</option>
+            <option value="products">Products</option>
+          </select>
+          <input type="text" class="search-bar" placeholder="Search..." aria-label="Search" />
+          <button class="search-icon" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="7" stroke="#666" stroke-width="2"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <ul class="menu">
+        <li class="dropdown">
+            <a href="#" class="dropdown-btn">All Categories</a>
+            <ul class="dropdown-menu">
+              <li>Automobiles & Motorcycles</li>
+              <li>Chemicals</li>
+              <li>Electrical Equipment & Supplies</li>
+              <li>Electronic Components & Supplies</li>
+              <li>Furniture</li>
+              <li>Clothing & Accessories</li>
+              <li>Home Appliances</li>
+              <li>Sports & Outdoors</li>
+              <li>Health & Beauty</li>
+              <li>Office Supplies</li>
+              <li>Tools & Hardware</li>
+              <li>Groceries</li>
+              <li>Pets Supplies</li>
+            </ul>
+        </li>
+     </ul>
+    
+
+      <div class="buttons">
+        <a href="login.html" class="btn login">Login</a>
+        <a href="Signup.html" class="btn get-started">
+          <span class="icon">🚀</span> Get Started </a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="slogan-container">
+    <h1 class="slogan">Global Business All in One</h1>
+  </div> 
+
+  <div class="content" style="display: flex;align-items: center; justify-content: center; align-content: center;">
+    <div class="slides">
+      <input type="radio" name="slides" id="slide1" checked>
+      <figure>
+        <img src="2021-10-25_10-28.png"style="border-radius:30px;"alt="Slide 1">
+        <label for="slide2" class="next">&#9654;</label>
+      </figure>
+
+      <input type="radio" name="slides" id="slide2">
+      <figure>
+        <img src="foire-produits-algeriens-nouakchott.jpg"style="border-radius:30px;" alt="Slide 2">
+        <label for="slide1" class="last">&#9664;</label>
+        <label for="slide3" class="next">&#9654;</label>
+      </figure>
+
+      <input type="radio" name="slides" id="slide3">
+      <figure>
+        <img src="IFRI-GAZOUZ.jpg"style="border-radius:30px;"alt="Slide 3">
+        <label for="slide2" class="last">&#9664;</label>
+      </figure>
+      
+<section class="products-section">
+  <button class="btn see-products" onclick="window.location.href='product.html'">See All Our Products</button>
+</section>
+    </div>
+ 
+    <div class="recommended-products">
+      <h2>Best Products</h2>
+      <div class="product">
+        <img src="LG-Logo.png"style="border-radius:30px;" alt="Product 1">
+        <div class="product-info">
+          <h3>LG ELECTRONICS</h3>
+          <p>Quantity: 10</p>
+          <p>Likes: 150</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="Logo-El-Mordjene-CEBON.png" alt="Product 2">
+        <div class="product-info">
+          <h3>EL MORDJENE</h3>
+          <p>Quantity: 5</p>
+          <p>Likes: 200</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="IFRI.png" alt="Product 3">
+        <div class="product-info">
+          <h3>IFRI PRODUCT</h3>
+          <p>Quantity: 3</p>
+          <p>Likes: 300</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="Moment1-300x210.png" alt="Product 4">
+        <div class="product-info">
+          <h3>MOMENT PRODUCT</h3>
+          <p>Quantity: 8</p>
+          <p>Likes: 250</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="condor-algerie-logo-BC7560D1F4-seeklogo.com.png" alt="Product 5">
+        <div class="product-info">
+          <h3>CONDOR ELECTRONICS</h3>
+          <p>Quantity: 2</p>
+          <p>Likes: 400</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="testimonials-section">
+    <h2 class="testimonials-heading">Check Our Testimonials !</h2>
+    <div class="containerr">
+      <div class="circle first"></div>
+      <div class="circle second"></div>
+      <div class="bar"></div>
+      <img src="profile.jpg" alt="profile" height="90" width="90" class="profile" />
+      <div class="text">This is where the testimonial text will go.</div>
+      <div class="details">Additional details about the testimonial.</div>
+    </div>
+  </section>
+  
+
+  <div class="stats-container" >
+    <h2>Our Journey in Numbers</h2>
+    <div class="stat">
+      <h3>Clients</h3>
+      <div class="counter" data-target="1500">0</div>
+    </div>
+    <div class="stat">
+      <h3>Suppliers</h3>
+      <div class="counter" data-target="1200">0</div>
+    </div>
+    <div class="stat">
+      <h3>Companies</h3>
+      <div class="counter" data-target="600">0</div>
+    </div>
+    <div class="stat">
+      <h3>Products</h3>
+      <div class="counter" data-target="2083">0</div>
+    </div>
+  </div>
+  <div class="sponsor-container">
+    <h2 class="sponsor-title">Our Beloved Sponsor</h2>
+    <div class="scroll-parent">
+        <div class="scroll-element primary">
+            <!-- Place your sponsor images here -->
+            <img src="Amazon_logo.svg" alt="Sponsor 1">
+            <img src="Shein-logo.png" alt="Sponsor 2">
+            <img src="ebayy.png" alt="Sponsor 3">
+            <img src="condor-algerie-logo-BC7560D1F4-seeklogo.com.png" alt="Sponsor 1 Duplicate">
+            <img src="Logo-El-Mordjene-CEBON.png" alt="Sponsor 2 Duplicate">
+            <img src="LG-Logo.png" alt="Sponsor 3 Duplicate">
+            <img src="IFRI.png" alt="Sponsor 4 Duplicate">
+            <img src="condor-algerie-logo-BC7560D1F4-seeklogo.com.png" alt="Sponsor 5 Duplicate">
+
+        </div>
+    </div>
+</div>
+<div class="content">
+  <img class="content-image" src="Design sans titre (1).png" alt="B2B eCommerce" />
+  <div class="content-text">
+      <h3>B2B eCommerce For Distributors</h3>
+      <p>Provide buyers a personalized, and self-guided shopping experience with a B2B portal and accompanying white label app.</p>
+      <div class="button-container">
+        <button class="btn free-trial" onclick="window.location.href='trial.html'">Free Trial 14 Days</button>
+        <button class="btn login" onclick="window.location.href='login.html'">Log In</button>
+      </div>
+  </div>
+</div>
+   <script src="home.js"></script>
+</body>
+</html> 

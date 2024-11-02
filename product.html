@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+ 
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-product {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8rem;
+         }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #66B2FF;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+    z-index: 999;
+}
+
+.chat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.chat-box {
+    display: none; /* Initially hidden */
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #2D3345;
+}
+
+.chat-message {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+textarea {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.submit-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.response-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+   
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .author {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        label {
+    font-weight: bold;  /* Makes the label bold */
+    margin-bottom: 8px; /* Adds space below the label */
+    color: #fff;        /* Sets the text color to white */
+    font-size: 16px;    /* Increases font size for better readability */
+}
+
+select {
+    padding: 10px;                   /* Adds padding inside the select dropdown */
+    margin-bottom: 15px;             /* Space below the dropdown */
+    border: 1px solid #ccc;          /* Light gray border */
+    border-radius: 5px;              /* Rounded corners */
+    background-color: #2D3345;       /* Matches chat box background */
+    color: #fff;                      /* Sets text color to white */
+    font-size: 14px;                  /* Font size */
+    appearance: none;                 /* Removes default arrow in some browsers */
+    cursor: pointer;                  /* Changes cursor to pointer on hover */
+}
+
+select:focus {
+    outline: none;                   /* Removes default outline */
+    border-color: #66B2FF;          /* Changes border color on focus */
+    box-shadow: 0 0 5px rgba(102, 178, 255, 0.5); /* Adds glow effect on focus */
+}
+
+/* Optional: Add a custom arrow for the select dropdown */
+.select-wrapper {
+    position: relative;               /* Positions the wrapper */
+    display: inline-block;            /* Allows the dropdown to be inline */
+}
+
+.select-wrapper::after {
+    content: '▼';                    /* Custom arrow */
+    position: absolute;              /* Positions the arrow */
+    right: 10px;                     /* Space from the right */
+    top: 50%;                        /* Centers vertically */
+    transform: translateY(-50%);     /* Adjusts vertical alignment */
+    pointer-events: none;            /* Prevents interaction with the arrow */
+    color: #fff;                     /* Sets arrow color */
+    font-size: 12px;                 /* Arrow font size */
+}
+
+        .price {
+            font-size: 1.25rem;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            margin-top:40px;
+            margin-left:20px;
+        }
+
+        .air-transport {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+ 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: rgb(0, 0, 0);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 500px;
+            height:600px;
+            text-align: center;
+        }
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 1.5rem;
+        }
+
+        .close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Title */
+h3 {
+    margin-bottom: 20px;
+}
+
+/* Radio Button Labels */
+label {
+    display: block;
+    margin: 10px 0; /* Spacing between labels */
+    font-size: 16px;
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+        .submit-button {
+    background-color: #007BFF; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 20px; /* Espacement intérieur */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur pointer pour indiquer qu'il est cliquable */
+    transition: background-color 0.3s, transform 0.2s; /* Effets de transition */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+    transform: translateY(-2px); /* Léger soulèvement au survol */
+}
+
+.submit-button:active {
+    transform: translateY(0); /* Réinitialisation au clic */
+}.artisana-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0; /* Space above and below the button */
+}
+
+.artisana-button {
+    background-color: #007BFF; /* Primary color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px 30px; /* Padding for larger size */
+    font-size: 18px; /* Larger font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s, transform 0.2s; /* Animation effects */
+}
+
+.artisana-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 1.5rem;
+        }
+
+        .submit-button {
+            margin-top: 1rem;
+        }
+
+    </style>
+</head>
+
+<header class="header" style="display: flex;align-items: center; justify-content: center; align-content: center;">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="AHLAM.png" alt="Logo" class="logo-image">
+        <span class="logo-text">ASSIT</span>
+      </div>
+
+      <div class="search-container">
+        <div class="search-bar-wrapper">
+          
+          <select class="search-option" aria-label="Search Options">
+            <option value="suppliers">Suppliers</option>
+            <option value="products">Products</option>
+          </select>
+          <input type="text" class="search-bar" placeholder="Search..." aria-label="Search" />
+          <button class="search-icon" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="7" stroke="#666" stroke-width="2"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <ul class="menu">
+        <li class="dropdown">
+          <a href="#" class="dropdown-btn">All Categories</a>
+          <ul class="dropdown-menu">
+            <li>Automobiles & Motorcycles</li>
+              <li>Chemicals</li>
+              <li>Electrical Equipment & Supplies</li>
+              <li>Electronic Components & Supplies</li>
+              <li>Furniture</li>
+              <li>Clothing & Accessories</li>
+              <li>Home Appliances</li>
+              <li>Sports & Outdoors</li>
+              <li>Health & Beauty</li>
+              <li>Office Supplies</li>
+              <li>Tools & Hardware</li>
+              <li>Groceries</li>
+              <li>Pets Supplies</li>
+          </ul>
+        </li>
+      </ul>
+
+
+      <div class="buttons">
+        <a href="login.html" class="btn login">Login</a>
+        <a href="Signup.htm" class="btn get-started">
+          <span class="icon">🚀</span> Get Started</a>
+      </div>
+    </nav>
+  </header>
+<body style="background-color: #10141D;">
+    <div class="container">
+        <h1 class="section-title" style="color: white;">Featured Product</h1>
+        <div class="featured-product">
+            <div style="display: flex; flex-direction: row; gap:50px">
+                <div style="width:30%"><img src="fotai4.jpg" alt="Featured Armchair" class="product-image"></div>
+                <div style="width:30%"><img src="fotai4.jpg" alt="Featured Armchair" class="product-image"></div>
+                <div style="width:30%"><img src="fotai4.jpg" alt="Featured Armchair" class="product-image"></div>
+            </div>
+            <h2 class="product-title">Premium Leather Armchair</h2>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span style="color: #666"> (4.5/5)</span>
+            </div>
+            <p class="author">By Luxe Seating</p>
+            <p class="description">Experience unparalleled comfort with our premium leather armchair, crafted from high-quality materials for a luxurious feel. Perfect for both living rooms and offices.</p>
+            <p class="price">$799.99</p>
+            <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+        </div>
+
+    <!-- Artisana Button -->
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin: 20px 0;">
+        <button class="artisana-button" style="background-color: #007BFF;margin-bottom:60px; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">
+            <a href="artisana.html"style="text-decoration:none;">See Artisana Products</a>
+        </button>
+
+    </div>
+<!-- Modal for Air Transport Options -->
+<div class="modal" id="transportModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Select Your Air Transport Option</h3>
+        <label><input type="radio" name="transport" value="air_freight"> Air Freight</label><br>
+        <label><input type="radio" name="transport" value="kost_fret"> Kost Fret</label><br>
+        <label><input type="radio" name="transport" value="express_service"> Express Service</label><br>
+        <label><input type="radio" name="transport" value="standard_service"> Standard Service</label><br>
+        <label><input type="radio" name="transport" value="cargo_service"> Cargo Service</label><br>
+        <label><input type="radio" name="transport" value="door_to_door"> Door-to-Door Service</label><br>
+        <label><input type="radio" name="transport" value="charter_service"> Charter Service</label><br>
+        <button class="submit-button" onclick="submitTransport()">Submit</button>
+    </div>
+</div>
+<div class="chat-widget">
+    <div class="chat-icon" onclick="toggleChat()">
+        💬 
+    </div>
+    <div class="chat-box">
+        <div class="chat-message user">
+            Hello! I'm here to help you explore investment opportunities in our products.
+        </div>
+        <div class="chat-message response">
+            What products are you interested in?
+        </div>
+        <form id="investorForm" onsubmit="submitInvestorInquiry(event)">
+            <label for="productType">Select a Product Type:</label>
+            <select id="productType" name="productType">
+                <option value="traditional_crafts">Traditional Crafts</option>
+                <option value="pottery">Pottery</option>
+                <option value="traditional_foods">Traditional Foods</option>
+                <option value="handmade_goods">Handmade Goods</option>
+                <option value="textiles">Textiles</option>
+                <option value="jewelry">Jewelry</option>
+            </select>
+            <label for="investorIdea">Your Idea/Inquiry:</label>
+            <textarea id="investorIdea" name="investorIdea" rows="4" placeholder="Share your thoughts..."></textarea>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+        <div id="responseMessage" class="response-message"></div>
+    </div>
+</div>
+
+
+        <h2 class="section-title" style="color: white;">Similar Products</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="fotai.jpg" alt="Product 1" class="product-image">
+                <h3 class="product-title">Modern Fabric Armchair</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span style="color: #666"> (4.0/5)</span>
+                </div>
+                <p class="author">By CozyHome</p>
+                <p class="description">Stylish and comfortable, this modern fabric armchair brings elegance to any room.</p>
+                <p class="price">$299.99</p>
+                <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="fotai2.avif" alt="Product 2" class="product-image">
+                <h3 class="product-title">Classic Wooden Armchair</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span style="color: #666"> (5.0/5)</span>
+                </div>
+                <p class="author">By Artisan Woodcraft</p>
+                <p class="description">Handcrafted wooden armchair with a timeless design, ideal for classic interiors.</p>
+                <p class="price">$499.99</p>
+                <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="fotai3.avif" alt="Product 3" class="product-image">
+                <h3 class="product-title">Outdoor Wicker Armchair</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span style="color: #666"> (4.2/5)</span>
+                </div>
+                <p class="author">By PatioPerfect</p>
+                <p class="description">Durable wicker armchair, designed for outdoor relaxation in style and comfort.</p>
+                <p class="price">$199.99</p>
+                <p class="air-transport" onclick="openModal()">Do you need air transport?</p>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById('transportModal').style.display = 'flex';
+        }
+    
+        function closeModal() {
+            document.getElementById('transportModal').style.display = 'none';
+        }
+    
+        function submitTransport() {
+            const selectedOption = document.querySelector('input[name="transport"]:checked');
+            if (selectedOption) {
+                alert(`You have selected: ${selectedOption.value}`);
+                closeModal();
+                // Show confirmation message
+                alert('We have sent you a payment email.');
+            } else {
+                alert('Please select an option.');
+            }
+        }
+        function toggleChat() {
+    const chatBox = document.querySelector('.chat-box');
+    chatBox.style.display = chatBox.style.display === 'none' || chatBox.style.display === '' ? 'block' : 'none';
+}
+
+function submitInvestorInquiry(event) {
+    event.preventDefault();
+    const productType = document.getElementById('productType').value;
+    const investorIdea = document.getElementById('investorIdea').value;
+    document.getElementById('responseMessage').textContent = `Thank you for your inquiry about ${productType}. We have sent your message for review!`;
+    // Reset the form
+    document.getElementById('investorForm').reset();
+}
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('transportModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>
